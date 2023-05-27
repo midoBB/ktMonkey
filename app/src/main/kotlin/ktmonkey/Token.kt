@@ -8,6 +8,10 @@ enum class TokenType { COMMA, EOF, ASSIGN, FUNC, IDENT, ILLEGAL, INT, LET, LPARE
     EQ, NE, BANG, MINUS, SLASH, ASTERISK, GT, LT }
 data class Token(val type: TokenType, val value: String? = null) {
     constructor(type: TokenType, value: Char?) : this(type, value.toString())
+
+    override fun toString(): String =
+        "[$type -> $value ]"
+
 }
 
 fun Char.isDoubleQuote() = this == '"'
