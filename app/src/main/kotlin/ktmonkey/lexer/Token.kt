@@ -1,16 +1,16 @@
-package ktmonkey
+package ktmonkey.lexer
 
-import ktmonkey.TokenType.*
+import ktmonkey.lexer.TokenType.*
 import java.util.*
 
 enum class TokenType { COMMA, EOF, ASSIGN, FUNC, IDENT, ILLEGAL, INT, LET, LPAREN,
     LSQUIRLY, PLUS, RPAREN, RSQUIRLY, SEMI, STRING, TRUE, FALSE, IF, ELSE, RETURN,
     EQ, NE, BANG, MINUS, SLASH, ASTERISK, GT, LT }
-data class Token(val type: TokenType, val value: String? = null) {
-    constructor(type: TokenType, value: Char?) : this(type, value.toString())
+data class Token(val type: TokenType, val literal: String) {
+    constructor(type: TokenType, literal: Char) : this(type, literal.toString())
 
     override fun toString(): String =
-        "[$type -> $value ]"
+        "[$type -> $literal ]"
 
 }
 

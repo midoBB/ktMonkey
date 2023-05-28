@@ -1,6 +1,6 @@
-package ktmonkey
+package ktmonkey.lexer
 
-class Tokenizer(value: String) {
+internal class Tokenizer(value: String) {
     private var position = 0
     private val value = value.trim()
 

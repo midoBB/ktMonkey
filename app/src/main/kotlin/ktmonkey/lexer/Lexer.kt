@@ -1,10 +1,10 @@
-package ktmonkey
+package ktmonkey.lexer
 
-import ktmonkey.TokenType.*
+import ktmonkey.lexer.TokenType.*
 
-object Lexer {
-    fun parse(value: String): Sequence<Token> = sequence {
-        val tokenizer = Tokenizer(value)
+data class Lexer (val input: String) {
+    fun parse(): Sequence<Token> = sequence {
+        val tokenizer = Tokenizer(input)
         while (tokenizer.hasNext()) {
             val next = tokenizer.peek()
             val peeked = tokenizer.peekNext()
@@ -12,9 +12,9 @@ object Lexer {
                 next.isLetter() ->
                     yield(tokenizer.readUntil { !it.isLetterOrDigit() && !it.isUnderscore() }.asToken())
                 next.isDigit() ->
-                    yield(Token(type = INT, value = tokenizer.readUntil { !it.isDigit() }))
+                    yield(Token(type = INT, literal = tokenizer.readUntil { !it.isDigit() }))
                 next.isDoubleQuote() ->
-                    yield(Token(type = STRING, value = tokenizer.readTo(true) { it.isDoubleQuote() }))
+                    yield(Token(type = STRING, literal = tokenizer.readTo(true) { it.isDoubleQuote() }))
                 else -> {
                     val tok = tokenizer.next().asToken(peeked)
                     if (tok.type == EQ || tok.type == NE) tokenizer.skip()
@@ -22,6 +22,6 @@ object Lexer {
                 }
             }
         }
-        yield(Token(type = EOF))
+        yield(Token(type = EOF, "\u0000"))
     }
 }

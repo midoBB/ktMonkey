@@ -1,4 +1,7 @@
-package ktmonkey
+package ktmonkey.repl
+
+import ktmonkey.lexer.Lexer
+
 const val PROMPT = ">> "
 object Repl {
 
@@ -9,7 +12,7 @@ object Repl {
             if( inp.isNullOrBlank() || inp.isEmpty()){
                 return
             }
-            val tokens = Lexer.parse(inp).toList()
+            val tokens = Lexer(inp).parse().toList()
             tokens.forEach { println(it) }
         }
     }
