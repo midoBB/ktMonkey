@@ -2,7 +2,7 @@ package ktmonkey.lexer
 
 import ktmonkey.lexer.TokenType.*
 
-data class Lexer (val input: String) {
+data class Lexer(val input: String) {
     fun parse(): Sequence<Token> = sequence {
         val tokenizer = Tokenizer(input)
         while (tokenizer.hasNext()) {

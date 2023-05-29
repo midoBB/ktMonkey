@@ -3,9 +3,9 @@ package ktmonkey
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.shouldBe
-import ktmonkey.lexer.TokenType.*
 import ktmonkey.lexer.Lexer
 import ktmonkey.lexer.Token
+import ktmonkey.lexer.TokenType.*
 
 class TokenTest : StringSpec({
     "First Test NextToken" {
@@ -22,7 +22,7 @@ class TokenTest : StringSpec({
             Token(RSQUIRLY, "}"),
             Token(COMMA, ","),
             Token(SEMI, ";"),
-            Token(EOF,"\u0000"),
+            Token(EOF, "\u0000"),
         )
 
         val tokens = Lexer(input).parse().toList()
@@ -121,7 +121,7 @@ class TokenTest : StringSpec({
             Token(NE, "!="),
             Token(INT, "9"),
             Token(SEMI, ";"),
-            Token(EOF,"\u0000"),
+            Token(EOF, "\u0000"),
         )
 
         val actual = Lexer(input).parse().toList()

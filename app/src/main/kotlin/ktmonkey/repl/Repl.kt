@@ -6,10 +6,10 @@ const val PROMPT = ">> "
 object Repl {
 
     fun start() {
-        while (true){
+        while (true) {
             print(PROMPT)
             val inp = readLine()
-            if( inp.isNullOrBlank() || inp.isEmpty()){
+            if (inp.isNullOrBlank() || inp.isEmpty()) {
                 return
             }
             val tokens = Lexer(inp).parse().toList()
